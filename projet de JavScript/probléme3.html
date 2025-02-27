@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification des nombres premiers</title>
+    <style>
+        :root {
+            --primary-color: rgb(78, 123, 78);
+            --secondary-color: rgb(241, 241, 9);
+            --tertiary-color: #ff8000;
+            --quaternary-color: rgb(0, 200, 255);
+            --text-color: rgb(250, 243, 243);
+            --footer-bg-color: #111111;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(image/imageJavaScript5.png); 
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: white; 
+        }
+
+        .header {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(5px);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em; 
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px; 
+            background-color: rgba(165, 42, 42, 0.477); 
+            border-radius: 20px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; 
+            text-align: center; 
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: white; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .input-number {
+            width: calc(100% - 42px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: white; 
+            text-align: center; 
+        }
+
+        .result-text {
+            font-size: 24px; 
+        }
+
+        #vev {
+            color: white; 
+        }
+
+        .oprt {
+            color: white; 
+        }
+
+        .footer {
+            background-color: var(--footer-bg-color);
+            padding: 10px;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        #application {
+            background-color: gray;
+            position: fixed;
+            bottom: 0px;
+            right: 10px;
+            border-radius: 10px;
+            width: 120px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #premier {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="image/imageJavaScript1.png" alt="Image de Bannière">
+        <h1 id="premier">VÉRIFICATION DE NOMBRE PREMIERS</h1>
+    </div>
+
+    <div class="container">
+        <label class="oprt" for="number">Entrez un nombre positif :</label>
+        <input type="text" id="number" class="input-number"> 
+        <button id="verif" onclick="checkPrime()">Vérifier</button>
+        <div id="result" class="result-text"></div> 
+    </div>
+
+    <button id="application" onclick="retour()"><a href="application.html"><h2>RETOUR</h2></a></button>
+
+    <script>
+        const checkPrime = () => {
+            let number = document.getElementById('number').value;
+            let resultElement = document.getElementById('result');
+            let validNumber = /^[0-9]+$/;  
+
+            if (validNumber.test(number)) {
+                number = parseInt(number);
+                if (number < 2) {
+                    resultElement.innerHTML = "<h3>" + number + " n'est pas premier</h3>";
+                } else if (number == 2 || number == 3 || number == 5 || number == 7) {
+                    resultElement.innerHTML = "<h3>" + number + " est premier</h3>";
+                } else if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0 || number % 7 == 0) {
+                    resultElement.innerHTML = "<h3>" + number + " n'est pas premier</h3>";
+                } else {
+                    resultElement.innerHTML = "<h3>" + number + " est premier</h3>";
+                }
+            } else {
+                resultElement.innerHTML = "Donnée invalide";
+            }
+        }
+
+        const retour = () => {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

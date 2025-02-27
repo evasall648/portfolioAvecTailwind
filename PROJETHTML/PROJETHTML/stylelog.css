@@ -1,0 +1,295 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body
+{
+	font-family: 'Poppins', sans-serif;
+	color: #181818;
+	padding: 0;
+	margin: 0;
+}
+
+
+.footer-cols ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+
+
+section h1, footer h1, nav a
+{
+	font-family: Arial,serif;
+	font-weight:normal;
+	text-transform: uppercase;
+}
+
+header
+{
+	background: url(Images/SALON.jpg)  repeat;
+	background-position: left top;
+    background-size: cover;
+	margin-top: 20px;
+	height: 400px;
+	border-radius: 15px;
+	position: relative;
+	
+
+	}
+	.logo img {
+		width: 250px; /* Ajustez la taille du logo selon vos besoins */
+		height: auto;
+		margin: auto;
+		position:absolute;
+		left: 20px;
+		top: 20px;
+		margin-left:10px ; 
+	
+	}
+		.logo-container img {
+			width: 150px; /* ajustez la taille du logo selon vos besoins */
+			height:auto;
+			top: auto;
+	}
+	.logo-container {
+    position: absolute;
+    top: 0px; /* Place le logo tout en haut */
+    left: 1; /* Place le logo tout à gauche */
+    z-index: 999; /* Assure que le logo est au premier plan */
+    padding: 0px; /* Ajoute un espace autour du logo si nécessaire */
+}
+	nav {
+        order: 3; /* Réorganise l'ordre des éléments flexbox, met le menu en dernier */
+    }
+    
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display:flex;
+}
+nav ul li {
+	margin-left: 20px; /* Utilisez margin-left pour créer un espacement à gauche */
+}
+
+nav ul li:first-child {
+	margin-left: auto; /* Déplace le premier élément vers la droite */
+}
+
+
+
+
+/*nav ul
+{
+	list-style-type: none;
+	display: flex;
+}
+/*nav li
+{
+	margin-right: 15px;
+	list-style: none;
+}*/
+
+nav a
+{
+	font-size: 1.2em;
+	padding-bottom: 5px ;
+	text-decoration: none;
+}
+
+
+
+.navbar a{
+    color:blue;
+     text-decoration: none;
+     margin-left: 1px;
+	 margin-top: auto;
+     font-weight:700px;
+	
+ }
+ .navbar{
+    display: flex;
+    position: relative;
+	top: 30px; /*nous a permis de descendre la nav*/
+	
+ }
+
+
+.slogan {
+	position: absolute;
+	bottom: 0; /* Place le slogan en bas de l'image */
+	left: 0; /* Ajustez la position horizontale si nécessaire */
+	width: 100%; /* Ajustez la largeur si nécessaire */
+	background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour le contraste */
+	color: #fff; /* Couleur du texte */
+	padding: 10px; /* Espacement du texte par rapport aux bords */
+	text-align: center; /* Centre le texte horizontalement */
+}
+.image-container,header,section,.footer{
+	max-width: 1170px;
+	margin: auto;
+  }
+  h1,p{
+	max-width: 1170px;
+	margin: auto;
+	text-align: justify;
+  }
+  h1{
+	text-align: center;
+	color: blue;
+  }
+section
+{
+	display: flex;
+	margin-bottom: 20px;
+}
+table{
+	width: 500%;
+	height: 500%;
+	border-collapse: collapse;
+	
+}
+table,th,td{
+	border: 2px solid black;
+}
+th{
+	background-color:blue;
+	color: white;
+	text-align:center;
+}
+td{
+	text-align: center;
+}
+	
+
+
+.image-container {
+	
+overflow: hidden; 
+display: flex;
+width:max-content;
+height: 350px;
+justify-content: center;
+scroll-behavior: smooth;
+white-space: nowrap;
+grid-auto-flow: column;
+	
+}
+
+  
+.image-container img {
+
+display: inline-block; 
+vertical-align:  middle; /* Alignement vertical en haut */
+animation: scrollImages 20s linear infinite; 
+
+margin-right: 20px; /* Animation pour faire défiler les images */
+
+	
+
+  }
+  
+  @keyframes scrollImages {
+	0% {
+	  transform: translateX(0); /* Début de la translation */
+	}
+	100% {
+	  transform: translateX(-200%); /* Fin de la translation */
+}
+  }
+  
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color:blue;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: blue;
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}

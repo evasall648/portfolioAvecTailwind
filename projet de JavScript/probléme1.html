@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+   
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            font-family: sans-serif;
+            background-image: url(image/imageJavaScript4.png);
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+        }
+
+        .header {
+            position: relative;
+            width: 100%;
+            height: 500px; 
+            overflow: hidden;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(5px);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em; 
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+            z-index: 1;
+        }
+
+        .calculatrice {
+            background-color: rgba(34, 34, 34, 0.9); 
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 30px;
+            box-shadow: 0 5px black;
+            margin-top: 20px; 
+        }
+
+        .ecran {
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 5px;
+            font-size: 25px;
+            position: relative;
+        }
+
+        .touches {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            grid-template-rows: repeat(5, 60px);
+            grid-gap: 10px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            background-color: #f7f7f7;
+            box-shadow: 0 3px #a8a8a8;
+            font-size: 18px;
+        }
+
+        button:active {
+            box-shadow: 0 1px #a8a8a8;
+            transform: translateY(2px);
+        }
+
+        button[id="clear"] {
+            background-color: #8570fc;
+            font-weight: bold;
+            color: white;
+        }
+
+        button[id="delete"] {
+            background-color: white;
+            font-weight: bold;
+            color: black;
+        }
+
+        button[id="result"] {
+            background-color: #7048bb;
+            font-weight: bold;
+            font-size: 35px;
+        }
+
+        #application {
+            background-color: gray;
+            position: fixed;
+            bottom: 0px;
+            right: 10px;
+            border-radius: 10px;
+            width: 120px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .operant {
+            background-color: rgb(224, 18, 156);
+            border-radius: 10px;
+        }
+
+        .num {
+            background-color: #a18cd1;
+            border-radius: 10px;
+        }
+
+        #clear {
+            border-radius: 10px;
+        }
+
+        @keyframes cursor-blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #cursor {
+            animation: cursor-blink 1s infinite;
+            color: black;
+        }
+        #calcul {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="image/imageJavaScript1.png" alt="Image de Bannière">
+        <h1 id="calcul">CALCULATRICE SIMPLE</h1>
+    </div>
+
+    <div class="calculatrice">
+        <div class="ecran" id="resultats"><span id="cursor">|</span></div>
+        <div class="touches">
+            <button class="operant" id="clear" onclick="clearinter()">clear</button>
+            <button class="operant" id="delete" onclick="deleteLast()">Del</button>
+            <button class="operant" id="bouton1" onclick="appendOperator('(')">(</button>
+            <button class="operant" id="bouton2" onclick="appendOperator(')')">)</button>
+            <button class="operant" id="bouton3" onclick="appendOperator('÷')">÷</button>
+            <button class="num" id="numo7" onclick="appendNumber('7')">7</button>
+            <button class="num" id="numo8" onclick="appendNumber('8')">8</button>
+            <button class="num" id="numo9" onclick="appendNumber('9')">9</button>
+            <button class="operant" id="bouton4" onclick="appendOperator('x')">x</button>
+            <button class="num" id="numo4" onclick="appendNumber('4')">4</button>
+            <button class="num" id="numo5" onclick="appendNumber('5')">5</button>
+            <button class="num" id="numo6" onclick="appendNumber('6')">6</button>
+            <button class="operant" id="bouton5" onclick="appendOperator('-')">-</button>
+            <button class="num" id="numo1" onclick="appendNumber('1')">1</button>
+            <button class="num" id="numo2" onclick="appendNumber('2')">2</button>
+            <button class="num" id="numo3" onclick="appendNumber('3')">3</button>
+            <button class="operant" id="bouton6" onclick="appendOperator('+')">+</button>
+            <button class="num" id="numo0" onclick="appendNumber('0')">0</button>
+            <button class="operant" id="virgule" onclick="appendDecimal('.')">.</button>
+            <button class="operant" id="result" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <button id="application" onclick="retour()"><a href="application.html"><h2>RETOUR</h2></a></button>
+
+    <script>
+        const updateDisplay = (newContent) => {
+            document.getElementById('resultats').innerHTML = newContent + '<span id="cursor">|</span>';
+        }
+
+        const appendNumber = (number) => {
+            let resultats = document.getElementById('resultats').textContent;
+            updateDisplay(resultats.replace('|', '') + number);
+        }
+
+        const appendOperator = (operator) => {
+            let resultats = document.getElementById('resultats').textContent;
+            let displayOperator = operator;
+            if (operator === '*') displayOperator = 'x';
+            if (operator === '/') displayOperator = '÷';
+            updateDisplay(resultats.replace('|', '') + displayOperator);
+        }
+
+        const appendDecimal = (decimal) => {
+            let resultats = document.getElementById('resultats').textContent;
+            if (!resultats.includes(decimal)) {
+                updateDisplay(resultats.replace('|', '') + decimal);
+            }
+        }
+
+        const calculate = () => {
+            try {
+                let resultats = document.getElementById('resultats').textContent;
+                resultats = resultats.replace(/x/g, '*').replace(/÷/g, '/');
+                let result = eval(resultats.replace('|', ''));
+                updateDisplay(result);
+            } catch (error) {
+                updateDisplay("Erreur");
+            }
+        }
+
+        const clearinter = () => {
+            updateDisplay('');
+        }
+
+        const deleteLast = () => {
+            let resultats = document.getElementById('resultats').textContent;
+            if (resultats.length > 1) {
+                updateDisplay(resultats.slice(0, -2));
+            } else {
+                updateDisplay('');
+            }   
+        }
+
+        const retour = () => {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

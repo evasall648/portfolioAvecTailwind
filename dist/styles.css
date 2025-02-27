@@ -1,0 +1,778 @@
+/* General Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Hero Section */
+
+#hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+  /* Cela place la vidéo derrière le contenu */
+}
+
+.hero-content {
+  color: white;
+  z-index: 1;
+  padding: 20px;
+}
+
+.hero-content h1,
+.hero-content p {
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+}
+
+.hero-content p {
+  animation-delay: 2s;
+}
+
+.hero-content a {
+  display: inline-block;
+  margin: 10px 20px;
+  padding: 15px 30px;
+  background-color: #1e90ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  opacity: 0;
+  animation: fadeInUp 2s forwards;
+}
+
+.hero-content a:first-child {
+  animation-delay: 2s;
+}
+
+.hero-content a:last-child {
+  animation-delay: 1s;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-text {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.animated-slogan {
+  animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* About Section */
+
+.about {
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  background: #fff;
+}
+
+.about img {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+  padding: 0 20px;
+  flex: 1;
+}
+
+.about-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  margin-bottom: 15px;
+}
+
+.fun-facts {
+  display: flex;
+  gap: 20px;
+}
+
+.fun-fact {
+  text-align: center;
+  font-size: 1.5rem;
+  animation: countUp 2s ease-in-out forwards;
+}
+
+@keyframes countUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Section globale du CV */
+
+.cv-section {
+  padding: 50px;
+  background-color: #f9f9f9;
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 900px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background: #1e90ff;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInLeft 0.6s ease-in-out;
+}
+
+.timeline-item:nth-child(odd) {
+  padding-right: 50%;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  padding-left: 50%;
+}
+
+.timeline-item .content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item .content h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.timeline-item .content p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.timeline-item:nth-child(odd) .content {
+  float: right;
+  transform: translateX(-20px);
+}
+
+.timeline-item:nth-child(even) .content {
+  float: left;
+  transform: translateX(20px);
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+  background-color: #f1f1f1;
+  /* Change la couleur du fond au survol */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  /* Augmente l'ombre pour plus d'effet */
+}
+
+.timeline-item .content:hover {
+  background-color: #1e90ff;
+  /* Change la couleur de fond de l'élément */
+  color: white;
+  /* Change la couleur du texte à blanc */
+}
+
+/* Ajout d'une animation pour les éléments de la formation */
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Conteneur des cartes */
+
+.cv-cards {
+  display: flex;
+  /* Disposition horizontale */
+  gap: 20px;
+  /* Espace entre les cartes */
+  margin-top: 20px;
+  justify-content: space-between;
+  /* Distribution uniforme des cartes */
+  width: 100%;
+  /* Assurez-vous que la largeur totale est de 100% */
+}
+
+/* Style des cartes */
+
+.cv-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 1 1 33.33%;
+  /* Trois cartes sur une ligne */
+  box-sizing: border-box;
+  /* Inclut padding et bordures dans la taille */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.cv-card:hover {
+  transform: translateY(-10px);
+  /* Légère élévation au survol */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Couleur des icônes */
+
+.cv-card-header i {
+  font-size: 1.8rem;
+  color: #1e90ff;
+  /* Couleur bleue des icônes */
+}
+
+.cv-card ul li {
+  list-style: none;
+  /* Retirer les puces par défaut */
+  position: relative;
+  padding-left: 20px;
+  /* Ajouter de l'espace pour notre puce personnalisée */
+}
+
+/* Couleur des puces */
+
+.cv-card ul li::before {
+  content: "•";
+  /* Ajoute une puce personnalisée */
+  position: absolute;
+  left: 0;
+  /* Positionne la puce à gauche */
+  color: #1e90ff;
+  /* Couleur bleue de la puce */
+  font-size: 1.2rem;
+}
+
+/* Styles responsives pour écrans plus petits */
+
+@media (max-width: 768px) {
+  .cv-card {
+    flex: 1 1 50%;
+    /* Deux cartes sur une ligne pour les écrans moyens */
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-card {
+    flex: 1 1 100%;
+    /* Une carte sur une ligne pour les petits écrans */
+  }
+}
+
+/* Global Footer Styling */
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Réseaux sociaux */
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  /* Rend vertical */
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.social-icons a i {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.social-icons a:hover {
+  color: #1e90ff;
+}
+
+/* Section des contacts */
+
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  /* Espacement entre les sections */
+  font-size: 18px;
+}
+
+/* Ajout des icônes et transitions */
+
+.footer-contacts p {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  transition: color 0.3s ease;
+  /* Ajout de la transition */
+}
+
+.footer-contacts p:hover {
+  color: #1e90ff;
+  /* Change la couleur quand on survole la partie */
+}
+
+.footer-contacts p i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* Ajout des transitions aux icônes */
+
+.footer-contacts p i {
+  transition: transform 0.3s ease;
+  /* Effet d'animation au survol */
+}
+
+.footer-contacts p:hover i {
+  transform: scale(1.2);
+  /* Augmente la taille des icônes au survol */
+}
+
+/* Liens */
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* Rend vertical */
+  align-items: flex-start;
+  /* Aligne les liens à gauche */
+  margin: 0;
+}
+
+.footer-links ul li {
+  margin: 10px 0;
+  /* Espace entre chaque lien */
+}
+
+.footer-links ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #1e90ff;
+}
+
+#portfolio {
+  padding: 50px 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+#portfolio h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* l ajout */
+
+/* Polices modernes pour les descriptions */
+
+.project-info h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.project-info p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Grille responsive pour occuper tout l'espace */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Colonnes adaptatives */
+  gap: 20px;
+  /* Espacement entre les cartes */
+}
+
+/* Uniformiser la taille des cartes */
+
+.project-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  min-height: 400px;
+  /* Hauteur minimale */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  /* Animation au survol */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* fin ajout */
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-info {
+  padding: 20px;
+  background-color: #fff;
+  color: #333;
+}
+
+.btn-project {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1e90ff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-project:hover {
+  background-color:#1e90ff;
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+  background-color: #f1f1f1;
+  /* Change la couleur du fond au survol */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  /* Augmente l'ombre pour plus d'effet */
+}
+
+.timeline-item .content:hover {
+  background-color: white;
+  /* Change la couleur de fond de l'élément */
+  color: white;
+  /* Change la couleur du texte à blanc */
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+  background-color: #f1f1f1;
+  /* Change la couleur du fond au survol */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  /* Augmente l'ombre pour plus d'effet */
+}
+
+.timeline-item .content:hover {
+  background-color: #1e90ff;
+  /* Change la couleur de fond de l'élément */
+  color: white;
+  /* Change la couleur du texte à blanc */
+}
+
+#testimonials {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+  text-align: center;
+  position: relative;
+}
+
+.testimonial-slider {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.testimonial {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out, box-shadow 0.3s ease;
+}
+
+/* Animation d'entrée avec un effet de flottement */
+
+.testimonial[data-aos="fade-up"] {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+/* Animation d'apparition douce */
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Effet au survol : léger flottement et ombre plus marquée */
+
+.testimonial:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  /* Ombre subtilement plus profonde */
+}
+
+/* Effet de transition sur le texte */
+
+.testimonial p {
+  font-size: 1.1rem;
+  color: #555;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Effet au survol du texte */
+
+.testimonial:hover p {
+  color: #333;
+  /* Change la couleur du texte au survol */
+  transform: translateX(5px);
+  /* Légère translation pour dynamiser */
+}
+
+/* Effet de transition sur le nom */
+
+.testimonial span {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Effet au survol du nom */
+
+.testimonial:hover span {
+  color: #333;
+  /* Change la couleur du nom au survol */
+  transform: translateX(5px);
+  /* Légère translation pour dynamiser */
+}
+
+#contact {
+  background-color: #fff;
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-group {
+  width: 80%;
+  max-width: 500px;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #1e90ff;
+  outline: none;
+}
+
+.form-submit {
+  background-color: #1e90ff;
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-submit:hover {
+  background-color: #1e90ff;
+}
+
+form[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+header {
+  background-color: #333;
+  padding: 10px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: right;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: white;
+}
+

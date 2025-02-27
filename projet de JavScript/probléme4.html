@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Hasard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c3c2c2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            text-align: center;
+            margin: 50px auto;
+            background-color: white;
+            padding: 100px;
+            border-radius: 180px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #3db2fa;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(2, 73, 144, 0.584);
+            color: white;
+            margin: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .victory {
+            color: #4CAF50;
+        }
+
+        .failure {
+            color: #FF5733;
+        }
+
+        #application {
+            padding: 10px;
+            background-color: gray;
+            bottom: 20px;
+            right: 20px;
+            position: fixed;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #application a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        :root {
+            --primary-color: rgb(78, 123, 78);
+            --secondary-color: rgb(241, 241, 9);
+            --tertiary-color: #ff8000;
+            --quaternary-color: rgb(0, 200, 255);
+            --text-color: rgb(250, 243, 243);
+            --footer-bg-color: #111111;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-size: cover;
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(5px);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+            z-index: 1;
+        }
+
+        #hasard {
+            text-align: center;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="header">
+        <img src="image/imageJavaScript1.png" alt="Image de Bannière">
+        <h1 id="hasard">JEU DE HASARD</h1>
+    </div>
+
+    <div class="container" style="background-image:url(image/imageJavaScript9.png);">
+        <button id="startGame">COMMENCER LE JEU</button>
+        <div id="result"></div>
+    </div>
+
+    <button id="application"><a href="application.html"><h2>RETOUR</h2></a></button>
+
+    <script>
+        document.getElementById('startGame').addEventListener('click', () => {
+            resetGame();
+            jeu();
+        });
+
+        function resetGame() {
+            document.getElementById('body').style.backgroundColor = "#f0f0f0";
+            document.getElementById('result').innerHTML = "";
+        }
+
+        function jeu() {
+            let points = 0;
+            let pourcentage;
+            let affiche = document.getElementById('result');
+            let body = document.getElementById('body');
+            let Max = 6, Min = 1;
+            let validNumber = /^[1-6]$/; // Regex to check if the input is a number between 1 and 6
+
+            for (let i = 0; i < 10; i++) {
+                let nombreAleatoire = Math.floor(Math.random() * (Max - Min + 1)) + Min;
+                let nbr = prompt("CHOISISSEZ UN NOMBRE DANS L'INTERVALLE DE [1 ; 6]");
+
+                if (nbr === null) {
+                    affiche.innerHTML = "<h1>AU REVOIR!</h1>";
+                    return;
+                }
+
+                if (validNumber.test(nbr)) {
+                    nbr = parseInt(nbr);
+                    if (nbr === nombreAleatoire) {
+                        alert(`BRAVO!!!! Vous avez trouvé le bon nombre.`);
+                        points++;
+                    } else {
+                        alert(`DÉSOLÉ!!! Le bon nombre était ${nombreAleatoire}.`);
+                    }
+                } else {
+                    alert("ERREUR!!! Veuillez saisir une donnée valide s'il vous plaît. MERCI!!!");
+                    i--;
+                }
+            }
+
+            pourcentage = (points * 100) / 10;
+
+            if (pourcentage >= 40) {
+                affiche.innerHTML = `<h2>Fin du jeu. Vous avez un total de ${pourcentage}% de points</h2>\n<h1 class="victory">VICTOIRE!!</h1>`;
+                body.style.backgroundColor = "#4CAF50";
+            } else {
+                affiche.innerHTML = `<h2>Fin du jeu. Vous avez un total de ${pourcentage}% de points</h2>\n<h1 class="failure">ÉCHEC</h1>`;
+                body.style.backgroundColor = "#FF5733";
+            }
+        }
+    </script>
+</body>
+</html>
